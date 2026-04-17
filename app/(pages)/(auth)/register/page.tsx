@@ -3,13 +3,15 @@
 import Link from "next/link"
 import { useActionState } from "react"
 import { register } from "@/lib/actions/auth"
+import Image from "next/image"
 
 export default function Register() {
   const [state, action] = useActionState(register, undefined)
 
   return (
-    <main className="relative flex h-full flex-col justify-center items-center text-base">
-      <Link href="/" className="absolute top-4 left-4 text-2xl">←</Link>
+    <section className="relative flex flex-1 flex-col justify-center items-center text-base">
+      <Link href="/" className="absolute top-4 left-4 text-4xl">←</Link>
+      <Image className="block md:hidden" src="/logo.png" width={225} height={130} alt="Logo MDD" />
       <h1 className="text-2xl mb-10">Inscription</h1>
       <form action={action} className="flex flex-col w-62.5">
         <label htmlFor="username">Nom d&apos;utilisateur</label>
@@ -26,6 +28,6 @@ export default function Register() {
         <br />
         <button className="self-center h-10 w-35 rounded-lg font-bold text-white bg-(--main-purple)">S&apos;inscrire</button>
       </form>
-    </main>
+    </section>
   )
 }

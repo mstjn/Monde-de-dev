@@ -1,20 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export const Home = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background">
-      <div className="text-center space-y-8">
+    <section className="flex-1 flex flex-col items-center justify-center bg-background">
+      <div className="text-center space-y-8 flex flex-col items-center">
         <div className="flex justify-center">
-          <div className="bg-primary text-primary-foreground text-4xl font-bold px-8 py-4 rounded-2xl">
-            MDD
-          </div>
+          <Image src="/logo.png" width={412} height={238} alt="Logo MDD" />
         </div>
 
-        <h1 className="text-3xl font-bold text-foreground">
-          Monde de Dév
-        </h1>
-
-        <div className="flex gap-4">
+        <div className="flex md:flex-row flex-col gap-4">
           <Link
             href="/login"
             className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
@@ -29,7 +24,7 @@ export const Home = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
