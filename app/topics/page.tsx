@@ -1,5 +1,6 @@
 import { getTopics } from "@/lib/actions/topics";
 import { TopicCard } from "@/components/topic-card";
+import { logout } from "@/lib/actions/auth"
 
 export default async function TopicsPage() {
   const topics = await getTopics();
@@ -14,6 +15,11 @@ export default async function TopicsPage() {
           ))}
         </div>
       </div>
+       
+
+  <form action={logout}>
+    <button type="submit">Se déconnecter</button>
+  </form>
     </main>
   );
 }

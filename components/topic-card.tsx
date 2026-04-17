@@ -1,10 +1,4 @@
-type Topic = {
-  id: string;
-  name: string;
-  description: string | null;
-  _count: { posts: number; subscriptions: number };
-};
-
+import type { Topic } from "@/types";
 export function TopicCard({ topic }: { topic: Topic }) {
   return (
     <div className="rounded-xl border border-border bg-card p-5 space-y-3 hover:shadow-md transition-shadow">
