@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(DATABASE_URL=\"postgresql://user:password@localhost:5432/mdd_db?schema=public\" npx prisma db push)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :5432)",
+      "Bash(findstr LISTENING)",
+      "Bash(tasklist)",
+      "Bash(findstr -i \"6616\\\\|10256\")",
+      "Bash(powershell Get-Process -Id 6616, 10256 | Select-Object Id, ProcessName, Path *)",
+      "Bash(npx prisma *)"
+    ]
+  }
+}
