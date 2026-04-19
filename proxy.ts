@@ -7,7 +7,7 @@ export default auth((req) => {
     req.nextUrl.pathname.startsWith("/register") || req.nextUrl.pathname === "/"
 
   if (isLoggedIn && isAuthRoute) {
-    return NextResponse.redirect(new URL("/feed", req.url))
+    return NextResponse.redirect(new URL("/articles", req.url))
   }
 
   if (!isLoggedIn && !isAuthRoute) {
@@ -16,5 +16,5 @@ export default auth((req) => {
 })
 
 export const config = {
-  matcher: ["/feed/:path*", "/topics/:path*", "/articles/:path*", "/profile/:path*", "/login", "/register", "/"],
+  matcher: ["/topics/:path*", "/articles/:path*", "/profile/:path*", "/login", "/register", "/"],
 }

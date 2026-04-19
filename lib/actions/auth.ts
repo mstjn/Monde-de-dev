@@ -24,7 +24,7 @@ export async function register(_prevState: unknown, formData: FormData) {
   await signIn("credentials", {
     email: parsed.data.email,
     password: parsed.data.password,
-    redirectTo: "/feed",
+    redirectTo: "/articles",
   });
 }
 
@@ -33,7 +33,7 @@ export async function login(_prevState: unknown, formData: FormData) {
     await signIn("credentials", {
       emailOrUsername: formData.get("emailOrUsername"),
       password: formData.get("password"),
-      redirectTo: "/feed",
+      redirectTo: "/articles",
     })
   } catch (error) {
     if (error instanceof AuthError) {
