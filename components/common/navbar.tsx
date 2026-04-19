@@ -14,7 +14,7 @@ export default function Navbar() {
     <nav
       className={`border-b-black border ${
         (pathname === "/login" || pathname === "/register") && "hidden"
-      } h-24 w-full md:flex items-center justify-between px-8 md:px-10 flex relative`}
+      } h-24 w-full md:flex items-center justify-between px-6 md:px-10 flex relative`}
     >
       {" "}
       <Image src="/logo.png" width={140} height={81} alt="Logo MDD" />

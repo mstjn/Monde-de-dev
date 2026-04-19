@@ -4,3 +4,10 @@ export interface Topic {
   description: string | null;
   _count: { posts: number; subscriptions: number };
 };
+
+export interface Article {
+  name : string, 
+  date : Date, 
+  author: string,
+  description : string
+}
