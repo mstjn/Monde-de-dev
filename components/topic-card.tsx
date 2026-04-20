@@ -1,15 +1,12 @@
 import type { Topic } from "@/types";
 export function TopicCard({ topic }: { topic: Topic }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-5 space-y-3 hover:shadow-md transition-shadow">
-      <h2 className="text-lg font-semibold text-foreground">{topic.name}</h2>
-      {topic.description && (
-        <p className="text-sm text-muted-foreground">{topic.description}</p>
-      )}
-      <div className="flex gap-4 text-xs text-muted-foreground">
-        <span>{topic._count.posts} article{topic._count.posts !== 1 ? "s" : ""}</span>
-        <span>{topic._count.subscriptions} abonné{topic._count.subscriptions !== 1 ? "s" : ""}</span>
-      </div>
-    </div>
+    <article className="bg-[#F5F5F5] rounded-2xl p-8 text-base flex flex-col gap-5">
+      <h2 className="font-bold text-lg">{topic.name}</h2>
+
+      <p>{topic.description}</p>
+
+      <button className="self-center h-10 w-35 rounded-lg font-bold text-white bg-(--main-purple)">S&apos;abonner</button>
+    </article>
   );
 }

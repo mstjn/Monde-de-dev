@@ -5,15 +5,12 @@ export default async function TopicsPage() {
   const topics = await getTopics();
 
   return (
-    <main className="min-h-screen bg-background p-8">
-      <div className="max-w-3xl mx-auto space-y-6">
-        <h1 className="text-2xl font-bold text-foreground">Thèmes</h1>
-        <div className="grid gap-4">
-          {topics.map((topic) => (
-            <TopicCard key={topic.id} topic={topic} />
-          ))}
-        </div>
-      </div>
+    <main className="md:p-15 p-5 flex flex-col gap-10">
+      <section className="grid md:grid-cols-2 grid-cols-1 gap-5">
+        {topics.map((topic) => (
+          <TopicCard key={topic.id} topic={topic} />
+        ))}
+      </section>
     </main>
   );
 }
