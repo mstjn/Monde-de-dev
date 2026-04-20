@@ -13,7 +13,21 @@ const sortMap = {
 
 export async function getPosts(sort = "date_desc") {
   const orderBy = sortMap[sort as keyof typeof sortMap] ?? sortMap.date_desc;
-  return prisma.post.findMany({ include: { author: true }, orderBy });
+  return prisma.post.findMany({ include: { author: true, topic: true }, orderBy });
+}
+
+export async function getPost(id: string) {
+  return prisma.post.findUnique({
+    where: { id },
+    include: {
+      author: { select: { username: true } },
+      topic: { select: { name: true } },
+      comments: {
+        include: { author: { select: { username: true } } },
+        orderBy: { createdAt: "asc" },
+      },
+    },
+  });
 }
 
 export async function createPost(_prevState: unknown, formData: FormData) {

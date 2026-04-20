@@ -14,7 +14,7 @@ export default async function ArticlesPage({ searchParams }: { searchParams: Pro
       </section>
 
       <section className="grid md:grid-cols-2 grid-cols-1 gap-10">
-        {posts.map(post => <ArticleCard key={post.id} title={post.title} content={post.content} date={post.createdAt} author={post.author} />)}
+        {posts.map(post => <ArticleCard key={post.id} id={post.id} title={post.title} content={post.content} date={post.createdAt} author={post.author} />)}
       </section>
     </main>
   );
