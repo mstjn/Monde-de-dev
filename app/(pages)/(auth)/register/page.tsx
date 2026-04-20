@@ -4,15 +4,14 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { register } from "@/lib/actions/auth";
 import Image from "next/image";
+import { ArrowLeft } from "lucide-react";
 
 export default function Register() {
   const [state, action] = useActionState(register, undefined);
 
   return (
     <section className="relative flex flex-1 flex-col justify-center items-center text-base">
-      <Link href="/" className="absolute top-4 left-4 text-4xl">
-        ←
-      </Link>
+      <Link href="/" className="absolute top-4 left-4"><ArrowLeft size={24} /></Link>
       <Image className="block md:hidden" src="/logo.png" width={225} height={130} alt="Logo MDD" />
       <h1 className="text-2xl mb-10">Inscription</h1>
       <form action={action} className="flex flex-col w-62.5">

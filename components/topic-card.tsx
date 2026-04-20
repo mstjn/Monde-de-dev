@@ -3,7 +3,7 @@ import { useState } from "react";
 import { newSubscription, removeSubscription } from "@/lib/actions/subscriptions";
 import type { Topic } from "@/types";
 
-export function TopicCard({ topic, isSubscribed: initialIsSubscribed }: { topic: Topic; isSubscribed: boolean }) {
+export function TopicCard({ topic, isSubscribed: initialIsSubscribed, profileVariant = false }: { topic: Topic; isSubscribed: boolean; profileVariant?: boolean }) {
   const [isSubscribed, setIsSubscribed] = useState(initialIsSubscribed);
 
   async function handleToggle() {
@@ -27,13 +27,15 @@ export function TopicCard({ topic, isSubscribed: initialIsSubscribed }: { topic:
 
       <button
         onClick={handleToggle}
-        className={`self-center h-10 w-35 rounded-lg font-bold transition-colors text-white ${
+        className={`self-center h-10 w-35 rounded-lg font-bold transition-colors ${
           isSubscribed
-            ? " bg-[#939393]"
-            : " bg-(--main-purple)"
+            ? profileVariant
+              ? "text-white bg-(--main-purple)"
+              : "text-white bg-[#939393]"
+            : "text-white bg-(--main-purple)"
         }`}
       >
-        {isSubscribed ? "Déjà abonné" : "S'abonner"}
+        {isSubscribed ? (profileVariant ? "Se désabonner" : "Déjà abonné") : "S'abonner"}
       </button>
     </article>
   );
