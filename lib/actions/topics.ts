@@ -13,6 +13,5 @@ export async function getTopicsByUser(userId: string) {
   return prisma.topic.findMany({
     where: { subscriptions: { some: { userId } } },
     orderBy: { name: "asc" },
-    include: { _count: { select: { posts: true, subscriptions: true } } },
   });
 }

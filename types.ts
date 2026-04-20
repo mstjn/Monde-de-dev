@@ -2,13 +2,12 @@ export interface Topic {
   id: string;
   name: string;
   description: string | null;
-  _count: { posts: number; subscriptions: number };
+  _count?: { posts: number; subscriptions: number };
 }
 
 export interface Post {
   id: string;
   title: string;
-  date: Date;
   author: User;
   content: string;
   createdAt: Date;
@@ -28,14 +27,15 @@ export interface User {
   updatedAt: Date;
   posts: Post[];
   comments: Comment[];
-  subscription: Subscription[];
+  subscriptions: Subscription[];
 }
 
 export interface Comment {
   id: string;
   content: string;
   createdAt: Date;
-  updatedAt: Date;
+  author: User;
+  authorId: string;
   post: Post;
   postId: string;
 }
