@@ -4,6 +4,11 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
+/**
+ * Crée un commentaire sur un article et revalide la page.
+ * @param postId - L'id de l'article
+ * @param content - Le contenu du commentaire
+ */
 export async function createComment(postId: string, content: string) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Non authentifié");
@@ -12,6 +17,5 @@ export async function createComment(postId: string, content: string) {
     data: { content, postId, authorId: session.user.id },
   });
 
-  // reload the page to display the new comment
   revalidatePath(`/articles/${postId}`);
 }

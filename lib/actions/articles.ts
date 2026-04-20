@@ -11,11 +11,19 @@ const sortMap = {
   title_desc:{ title:     "desc" as const },
 };
 
+/**
+ * Récupère tous les articles triés.
+ * @param sort - Critère de tri (date_desc, date_asc, title_asc, title_desc)
+ */
 export async function getPosts(sort = "date_desc") {
   const orderBy = sortMap[sort as keyof typeof sortMap] ?? sortMap.date_desc;
   return prisma.post.findMany({ include: { author: true, topic: true }, orderBy });
 }
 
+/**
+ * Récupère un article par son id avec auteur, thème et commentaires.
+ * @param id - L'id de l'article
+ */
 export async function getPost(id: string) {
   return prisma.post.findUnique({
     where: { id },
@@ -30,6 +38,11 @@ export async function getPost(id: string) {
   });
 }
 
+/**
+ * Crée un nouvel article.
+ * @param _prevState - État précédent du formulaire
+ * @param formData - Données du formulaire (title, content, topic)
+ */
 export async function createPost(_prevState: unknown, formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Non authentifié");

@@ -5,6 +5,10 @@ import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
 
+/**
+ * Récupère le profil de l'utilisateur connecté.
+ * @returns Données du profil (id, username, email)
+ */
 export async function getProfile() {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Non authentifié");
@@ -14,6 +18,11 @@ export async function getProfile() {
   });
 }
 
+/**
+ * Met à jour le profil de l'utilisateur connecté après vérification du mot de passe.
+ * @param _prevState - État précédent du formulaire
+ * @param formData - Données du formulaire (username, email, password)
+ */
 export async function updateProfile(_prevState: unknown, formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Non authentifié");

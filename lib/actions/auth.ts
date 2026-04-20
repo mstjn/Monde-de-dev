@@ -5,6 +5,11 @@ import bcrypt from "bcryptjs";
 import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 
+/**
+ * Inscrit un nouvel utilisateur et le connecte automatiquement.
+ * @param _prevState - État précédent du formulaire
+ * @param formData - Données du formulaire (username, email, password)
+ */
 export async function register(_prevState: unknown, formData: FormData) {
   const parsed = registerSchema.safeParse({
     username: formData.get("username"),
@@ -28,6 +33,11 @@ export async function register(_prevState: unknown, formData: FormData) {
   });
 }
 
+/**
+ * Connecte un utilisateur avec son email/username et mot de passe.
+ * @param _prevState - État précédent du formulaire
+ * @param formData - Données du formulaire (emailOrUsername, password)
+ */
 export async function login(_prevState: unknown, formData: FormData) {
   try {
     await signIn("credentials", {
@@ -43,6 +53,7 @@ export async function login(_prevState: unknown, formData: FormData) {
   }
 }
 
+/** Déconnecte l'utilisateur et redirige vers l'accueil. */
 export async function logout() {
   "use server"
   await signOut({redirectTo: "/"})
