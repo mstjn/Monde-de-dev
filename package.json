@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "cypress": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@prisma/client": "^6",
@@ -37,6 +39,7 @@
     "@types/react-dom": "^19",
     "@vitest/coverage-v8": "^4.1.4",
     "bcryptjs": "^3.0.3",
+    "cypress": "^15.14.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "install": "^0.13.0",

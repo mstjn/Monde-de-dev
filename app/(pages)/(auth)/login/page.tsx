@@ -22,7 +22,7 @@ export default function Login() {
         <input className="border h-12.5 border-black rounded-lg" type="password" id="password" name="password" />
         {state?.error && <p className="text-red-500 text-sm">{state.error}</p>}
         <br />
-        <button className="self-center h-10 w-35 rounded-lg font-bold text-white bg-(--main-purple)">Se connecter</button>
+        <button type="submit" className="self-center h-10 w-35 rounded-lg font-bold text-white bg-(--main-purple)">Se connecter</button>
       </form>
     </section>
   )

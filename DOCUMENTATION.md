@@ -106,13 +106,6 @@ Décrivez les tests mis en place :
 
 ### **3.2 Rapport de performance et optimisation**
 
-Décrivez les actions menées pour **améliorer la performance** du code et du rendu :
-
-* résultats d'audit (Lighthouse, Vercel Analytics, etc.),
-* points d'amélioration identifiés,
-* actions correctives appliquées.
-
-*Exemple : "Après audit Lighthouse, la performance est passée de 65 à 95/100 grâce à l'utilisation du composant Next/Image et au rendu statique partiel (PPR)."*
 
 ### **3.3 Revue technique**
 
