@@ -1,6 +1,7 @@
 "use server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { subscriptionSchema } from "@/lib/validations/content";
 
 /** Récupère l'id de l'utilisateur connecté ou lève une erreur. */
 async function getAuthenticatedUserId() {
@@ -16,8 +17,11 @@ async function getAuthenticatedUserId() {
  */
 export async function newSubscription(topicId: string) {
   const userId = await getAuthenticatedUserId();
+  const parsed = subscriptionSchema.safeParse({ topicId });
+  if (!parsed.success) throw new Error(parsed.error.flatten().fieldErrors.topicId?.[0]);
+
   await prisma.subscription.create({
-    data: { userId, topicId },
+    data: { userId, topicId: parsed.data.topicId },
   });
 }
 

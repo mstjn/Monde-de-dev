@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import { createPostSchema } from "@/lib/validations/content";
 
 const sortMap = {
   date_desc: { createdAt: "desc" as const },
@@ -47,13 +48,15 @@ export async function createPost(_prevState: unknown, formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) throw new Error("Non authentifié");
 
-  const topicId = formData.get("topic") as string;
-  const title   = formData.get("title") as string;
-  const content = formData.get("content") as string;
+  const parsed = createPostSchema.safeParse({
+    topicId: formData.get("topic"),
+    title:   formData.get("title"),
+    content: formData.get("content"),
+  });
 
-  if (!topicId) return { error: "Le thème est requis" };
-  if (!title.trim()) return { error: "Le titre est requis" };
-  if (!content.trim()) return { error: "Le contenu est requis" };
+  if (!parsed.success) return { errors: parsed.error.flatten().fieldErrors };
+
+  const { topicId, title, content } = parsed.data;
 
   await prisma.post.create({
     data: { title, content, topicId, authorId: session.user.id },

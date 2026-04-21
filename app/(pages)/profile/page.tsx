@@ -1,6 +1,6 @@
 import { getProfile } from "@/lib/actions/user";
-import UpdateProfileForm from "@/components/profile-form";
-import { TopicCard } from "@/components/topic-card";
+import UpdateProfileForm from "@/components/form/profile-form";
+import { TopicCard } from "@/components/ui/topic-card";
 import { getTopicsByUser } from "@/lib/actions/topics";
 
 export default async function ProfilePage() {

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getPost } from "@/lib/actions/articles";
-import { CommentForm } from "@/components/comment-form";
+import { CommentForm } from "@/components/form/comment-form";
 
 export default async function ArticlePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

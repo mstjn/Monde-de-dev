@@ -16,19 +16,20 @@ export default function CreateArticleForm({ topics }: { topics: Topic[] }) {
         <select id="topic" name="topic" className="border border-(--main-purple) rounded-lg h-12 px-3">
           {topics.map(topic => <option key={topic.id} value={topic.id}>{topic.name}</option>)}
         </select>
+        {state?.errors?.topicId && <p className="text-red-500 text-sm">{state.errors.topicId[0]}</p>}
       </div>
 
       <div className="flex flex-col gap-1">
         <label htmlFor="title" className="font-semibold">Titre</label>
         <input id="title" name="title" type="text" value={title} onChange={e => setTitle(e.target.value)} className="border border-(--main-purple) rounded-lg h-12 px-3" />
+        {state?.errors?.title && <p className="text-red-500 text-sm">{state.errors.title[0]}</p>}
       </div>
 
       <div className="flex flex-col gap-1">
         <label htmlFor="content" className="font-semibold">Contenu</label>
         <textarea id="content" name="content" rows={8} value={content} onChange={e => setContent(e.target.value)} className="border border-(--main-purple) rounded-lg px-3 py-2 resize-none" />
+        {state?.errors?.content && <p className="text-red-500 text-sm">{state.errors.content[0]}</p>}
       </div>
-
-      {state?.error && <p className="text-red-500 text-sm text-center">{state.error}</p>}
 
       <button className="self-center h-10 w-35 rounded-lg font-bold text-white bg-(--main-purple)">
         Créer

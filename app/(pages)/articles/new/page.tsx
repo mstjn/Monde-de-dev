@@ -1,4 +1,4 @@
-import CreateArticleForm from "@/components/ui/create-article-form";
+import CreateArticleForm from "@/components/form/create-article-form";
 import { getTopics } from "@/lib/actions/topics";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";

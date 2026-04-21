@@ -1,5 +1,5 @@
 import { getTopics } from "@/lib/actions/topics";
-import { TopicCard } from "@/components/topic-card";
+import { TopicCard } from "@/components/ui/topic-card";
 import { getUserSubscribedTopicIds } from "@/lib/actions/subscriptions";
 
 export default async function TopicsPage() {
