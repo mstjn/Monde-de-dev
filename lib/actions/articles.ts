@@ -4,21 +4,23 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { createPostSchema } from "@/lib/validations/content";
-
 const sortMap = {
   date_desc: { createdAt: "desc" as const },
   date_asc:  { createdAt: "asc"  as const },
-  title_asc: { title:     "asc"  as const },
-  title_desc:{ title:     "desc" as const },
 };
 
 /**
- * Récupère tous les articles triés.
- * @param sort - Critère de tri (date_desc, date_asc, title_asc, title_desc)
+ * Récupère les articles filtrés par thèmes et triés.
+ * @param sort - Critère de tri (date_desc, date_asc)
+ * @param topicIds - Liste d'ids de thèmes à inclure
  */
-export async function getPosts(sort = "date_desc") {
+export async function getPosts(sort = "date_desc", topicIds: string[]) {
   const orderBy = sortMap[sort as keyof typeof sortMap] ?? sortMap.date_desc;
-  return prisma.post.findMany({ include: { author: true, topic: true }, orderBy });
+  return prisma.post.findMany({
+    where: { topicId: { in: topicIds } },
+    include: { author: true, topic: true },
+    orderBy,
+  });
 }
 
 /**

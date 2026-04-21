@@ -6,8 +6,6 @@ import { useState } from "react";
 const options = [
   { label: "Plus récent", value: "date_desc" },
   { label: "Plus ancien", value: "date_asc" },
-  { label: "Titre A-Z", value: "title_asc" },
-  { label: "Titre Z-A", value: "title_desc" },
 ];
 
 export default function SortButton() {

@@ -29,7 +29,7 @@ describe("register", () => {
 
   it("retourne une erreur si l'email est déjà utilisé", async () => {
     vi.mocked(prisma.user.findUnique).mockResolvedValue({ id: "existing" } as any);
-    const result = await register(undefined, makeFormData({ username: "alice", email: "alice@test.com", password: "password123" }));
+    const result = await register(undefined, makeFormData({ username: "alice", email: "alice@test.com", password: "Password1!" }));
     expect(result).toMatchObject({ errors: { email: ["Email déjà utilisé"] } });
   });
 
@@ -38,7 +38,7 @@ describe("register", () => {
     vi.mocked(bcrypt.hash).mockResolvedValue("hashed" as any);
     vi.mocked(prisma.user.create).mockResolvedValue({} as any);
     vi.mocked(signIn).mockResolvedValue(undefined as any);
-    await register(undefined, makeFormData({ username: "alice", email: "alice@test.com", password: "password123" }));
+    await register(undefined, makeFormData({ username: "alice", email: "alice@test.com", password: "Password1!" }));
     expect(prisma.user.create).toHaveBeenCalled();
     expect(signIn).toHaveBeenCalledWith("credentials", expect.objectContaining({ email: "alice@test.com" }));
   });

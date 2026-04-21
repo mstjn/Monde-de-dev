@@ -100,6 +100,83 @@ P5-DFSJS/
 └── package.json
 ```
 
+## Tests
+
+```bash
+npm run test           # lance les tests
+npm run test:coverage  # lance les tests avec rapport de couverture
+```
+
+Couverture minimale requise : **80%** sur les actions et validations.
+
+## Server Actions
+
+Toutes les actions sont dans `lib/actions/`. Elles s'exécutent côté serveur via le mécanisme `"use server"` de Next.js.
+
+### Authentification — `lib/actions/auth.ts`
+
+| Action | Paramètres | Auth requise | Retour |
+|--------|-----------|--------------|--------|
+| `register` | `formData` — username, email, password | Non | `{ errors }` ou redirect `/articles` |
+| `login` | `formData` — emailOrUsername, password | Non | `{ error }` ou redirect `/articles` |
+| `logout` | — | Oui | redirect `/` |
+
+**Validation `register`** : email valide, username 3–20 caractères, password 8 caractères minimum.
+
+---
+
+### Articles — `lib/actions/articles.ts`
+
+| Action | Paramètres | Auth requise | Retour |
+|--------|-----------|--------------|--------|
+| `getPosts` | `sort?` — `date_desc` \| `date_asc` \| `title_asc` \| `title_desc` | Non | Liste d'articles avec auteur et thème |
+| `getPost` | `id` — identifiant de l'article | Non | Article avec auteur, thème et commentaires, ou `null` |
+| `createPost` | `formData` — topic, title, content | Oui | `{ errors }` ou redirect `/articles` |
+
+**Validation `createPost`** : titre 1–150 caractères, contenu 1–5000 caractères, topicId requis.
+
+---
+
+### Commentaires — `lib/actions/comments.ts`
+
+| Action | Paramètres | Auth requise | Retour |
+|--------|-----------|--------------|--------|
+| `createComment` | `postId`, `content` | Oui | `void` ou throw |
+
+**Validation** : contenu 1–1000 caractères. Revalide automatiquement la page de l'article.
+
+---
+
+### Souscriptions — `lib/actions/subscriptions.ts`
+
+| Action | Paramètres | Auth requise | Retour |
+|--------|-----------|--------------|--------|
+| `newSubscription` | `topicId` | Oui | `void` ou throw |
+| `removeSubscription` | `topicId` | Oui | `void` ou throw |
+| `getUserSubscribedTopicIds` | — | Oui | `string[]` |
+
+---
+
+### Thèmes — `lib/actions/topics.ts`
+
+| Action | Paramètres | Auth requise | Retour |
+|--------|-----------|--------------|--------|
+| `getTopics` | — | Non | Liste de thèmes avec compteurs posts/abonnés |
+| `getTopicsByUser` | `userId` | Non | Liste de thèmes souscrits par l'utilisateur |
+
+---
+
+### Profil — `lib/actions/user.ts`
+
+| Action | Paramètres | Auth requise | Retour |
+|--------|-----------|--------------|--------|
+| `getProfile` | — | Oui | `{ id, username, email }` ou `null` |
+| `updateProfile` | `formData` — username, email, password | Oui | `{ error }` ou `{ success: true }` |
+
+**Validation `updateProfile`** : username et email non vides, mot de passe actuel obligatoire pour confirmer la modification.
+
+---
+
 ## Documentation
 
 - [Next.js Documentation](https://nextjs.org/docs)
