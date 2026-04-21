@@ -8,7 +8,8 @@
       "Bash(tasklist)",
       "Bash(findstr -i \"6616\\\\|10256\")",
       "Bash(powershell Get-Process -Id 6616, 10256 | Select-Object Id, ProcessName, Path *)",
-      "Bash(npx prisma *)"
+      "Bash(npx prisma *)",
+      "Bash(npx vitest *)"
     ]
   }
 }
