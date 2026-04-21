@@ -16,9 +16,9 @@ export default function SortButton() {
   }
 
   return (
-    <button onClick={toggle} className="font-bold text-lg flex items-center gap-1">
+    <button onClick={toggle} aria-label={`Trier par ${isDesc ? "plus ancien" : "plus récent"}`} className="font-bold text-lg flex items-center gap-1">
       {isDesc ? "Plus récent" : "Plus ancien"}
-      <span className="text-sm">{isDesc ? "▼" : "▲"}</span>
+      <span aria-hidden="true" className="text-sm">{isDesc ? "▼" : "▲"}</span>
     </button>
   );
 }

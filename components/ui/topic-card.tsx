@@ -27,6 +27,8 @@ export function TopicCard({ topic, isSubscribed: initialIsSubscribed, profileVar
 
       <button
         onClick={handleToggle}
+        aria-pressed={isSubscribed}
+        aria-label={`${isSubscribed ? (profileVariant ? "Se désabonner de" : "Déjà abonné à") : "S'abonner à"} ${topic.name}`}
         className={`self-center h-10 w-35 rounded-lg font-bold transition-colors ${
           isSubscribed
             ? profileVariant

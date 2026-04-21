@@ -12,6 +12,7 @@ export default function Navbar() {
 
   return (
     <nav
+      aria-label="Navigation principale"
       className={`border-b-black border ${
         (pathname === "/login" || pathname === "/register") && "hidden"
       } h-24 w-full md:flex items-center justify-between px-6 md:px-10 flex relative`}
@@ -44,7 +45,7 @@ export default function Navbar() {
             </li>
           </ul>
 
-          <button className="md:hidden mt-2" onClick={() => setIsOpen(true)}>
+          <button className="md:hidden mt-2" onClick={() => setIsOpen(true)} aria-label="Ouvrir le menu" aria-expanded={isOpen} aria-controls="mobile-menu">
             <Image src="/hamburger.svg" width={27.5} height={16} alt="Logo hamburger" />
           </button>
 
@@ -55,6 +56,8 @@ export default function Navbar() {
             }`}
           />
           <div
+            id="mobile-menu"
+            aria-hidden={!isOpen}
             className={`text-xl h-screen flex flex-col bg-white right-0 w-[66%] fixed top-0 border-l border-black z-50 transition-transform duration-300 ease-in-out md:hidden ${
               isOpen ? "translate-x-0" : "translate-x-full"
             }`}

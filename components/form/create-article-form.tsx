@@ -31,7 +31,7 @@ export default function CreateArticleForm({ topics }: { topics: Topic[] }) {
         {state?.errors?.content && <p className="text-red-500 text-sm">{state.errors.content[0]}</p>}
       </div>
 
-      <button className="self-center h-10 w-35 rounded-lg font-bold text-white bg-(--main-purple)">
+      <button type="submit" className="self-center h-10 w-35 rounded-lg font-bold text-white bg-(--main-purple)">
         Créer
       </button>
     </form>
