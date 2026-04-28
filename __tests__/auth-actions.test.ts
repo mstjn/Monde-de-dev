@@ -40,7 +40,7 @@ describe("register", () => {
     vi.mocked(signIn).mockResolvedValue(undefined as any);
     await register(undefined, makeFormData({ username: "alice", email: "alice@test.com", password: "Password1!" }));
     expect(prisma.user.create).toHaveBeenCalled();
-    expect(signIn).toHaveBeenCalledWith("credentials", expect.objectContaining({ email: "alice@test.com" }));
+    expect(signIn).toHaveBeenCalledWith("credentials", expect.objectContaining({ emailOrUsername: "alice@test.com" }));
   });
 });
 

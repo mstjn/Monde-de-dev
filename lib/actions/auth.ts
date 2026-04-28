@@ -27,7 +27,7 @@ export async function register(_prevState: unknown, formData: FormData) {
   });
 
   await signIn("credentials", {
-    email: parsed.data.email,
+    emailOrUsername: parsed.data.email,
     password: parsed.data.password,
     redirectTo: "/articles",
   });
