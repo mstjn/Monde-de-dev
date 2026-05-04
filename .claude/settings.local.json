@@ -9,7 +9,9 @@
       "Bash(findstr -i \"6616\\\\|10256\")",
       "Bash(powershell Get-Process -Id 6616, 10256 | Select-Object Id, ProcessName, Path *)",
       "Bash(npx prisma *)",
-      "Bash(npx vitest *)"
+      "Bash(npx vitest *)",
+      "Bash(docker compose *)",
+      "Bash(docker-compose ls *)"
     ]
   }
 }
